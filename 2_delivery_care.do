@@ -28,13 +28,14 @@ gen country = regexs(1) if regexm(country_year, "([a-zA-Z]+)")
 	replace c_earlybreast = . if m34==.
 	
     *c_skin2skin: child placed on mother's bare skin immediately after birth of births in last 2 years
-	gen c_skin2skin = (m77 == 1) if  inlist(m77,1,2,3)  
-	replace  c_skin2skin=. if m77==8
+	gen c_skin2skin = (m77 == 1) if    !inlist(m77,.,8) 
+	// in the original code, you treat c_skin2skin=. if m77=0. However, if m77=0, c_skin2skin = 0.
 	
 	*c_sba: Skilled birth attendance of births in last 2 years: according to report doctors and nurses/midwives skilled
 		gen c_sba = 0
-		replace c_sba = 1 if (m3a==1 | m3b==1 | m3c==1) 
-		replace c_sba = . if m3a==. | m3b==. | m3c==.
+		replace c_sba = 1 if (m3a==1 | m3b==1 | m3c==1| m3d == 1) 
+		replace c_sba = . if m3a==. | m3b==. | m3c==. | m3d==.
+	// Normally we include auxiliary nurse. There will be general code for c_sba, when you start to coding. Normally the general code will specify all the cases in different countries. But also be careful when you see the label are missing. Because the general code may not scrape missing labels. So, you can continue your codes if general codes cannot work.
 
 	*c_sba_q: child placed on mother's bare skin and breastfeeding initiated immediately after birth among children with sba of births in last 2 years
 	gen c_sba_q = (c_skin2skin == 1 & c_earlybreast == 1) if c_sba == 1
