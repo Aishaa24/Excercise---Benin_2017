@@ -206,7 +206,8 @@ ta unmettot if v502!=1 & sexact==1 [iw=wgt]
 **ADDED TO STANDARD CODE - 29 DEC 2015
 ** Unmet need for family planning (revised definition)
 	gen w_unmet_fp=1 if unmet==1|unmet==2
-	replace w_unmet_fp=0 if unmet==3|unmet==4|unmet==7|unmet==9|unmet==97    
+	replace w_unmet_fp=0 if unmet==3|unmet==4|unmet==7|unmet==9|unmet==97 
+	replace w_unmet_fp = . if v502 != 1  // currently married or in union women
 /*	
 	gen w_unmet_fp_active=1 if unmet==1|unmet==2
 	replace w_unmet_fp_active=0 if unmet==3|unmet==4|unmet==7|unmet==9
