@@ -21,7 +21,7 @@
 	
 	 *anc_skill: Categories as skilled: doctor, nurse, midwife
 
-	 egen anc_skill = rowtotal(m2a m2b m2c),mi   
+	 egen anc_skill = rowtotal(m2a m2b m2c m2d),mi   
 
 	egen anc_blood = rowtotal(m42c m42d m42e),mi
 
