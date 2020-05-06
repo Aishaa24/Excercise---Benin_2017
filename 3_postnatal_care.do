@@ -8,13 +8,13 @@
 	gen c_pnc_any = .
 		
 	replace c_pnc_any = 0 if m62 != . | m66 != . | m70 != . | m74 != .
-	replace c_pnc_any = 1 if (m63 < 307 & inlist(m64,11,12,13)) | (m67 < 307 & inlist(m68,11,12,13)) | (m71 < 307 & inlist(m72,11,12,13) | (m75 <= 304 & inlist(m76,11,12,13)))
+	replace c_pnc_any = 1 if (m63 < 307 & inlist(m64,11,12,13,14)) | (m67 < 307 & inlist(m68,11,12,13,14)) | (m71 < 307 & inlist(m72,11,12,13,14) | (m75 <= 304 & inlist(m76,11,12,13,14)))
 	replace c_pnc_any = . if inlist(m63,998) | inlist(m67,998) | inlist(m71,998) | inlist(m75,998) | m70 == 8 
 		
 	*c_pnc_eff: mother AND child in first 24h by skilled health worker
 
 	gen c_pnc_eff = .
-	replace c_pnc_eff = 1 if (((inrange(m63,100,130) | m63 == 201 ) & inlist(m64,11,12,13)) | ((inrange(m67,100,172) | m67 == 201) & inlist(m68,11,12,13))) & (((inrange(m71,100,172)  | m71 == 201) & inlist(m72,11,12,13)) | ((inrange(m75,100,172) | m75 == 201) & inlist(m76,11,12,13)))
+	replace c_pnc_eff = 1 if (((inrange(m63,100,130) | m63 == 201 ) & inlist(m64,11,12,13,14)) | ((inrange(m67,100,172) | m67 == 201) & inlist(m68,11,12,13,14))) & (((inrange(m71,100,172)  | m71 == 201) & inlist(m72,11,12,13,14)) | ((inrange(m75,100,172) | m75 == 201) & inlist(m76,11,12,13,14)))
 	replace c_pnc_eff = . if inlist(m63,998) | inlist(m67,998) | inlist(m71,998) | inlist(m75,998) | m62 == 8 | m66 == 8 | m70 == 8 | m74 == 8
 		
 *c_pnc_eff_q: mother AND child in first 24h by skilled health worker among those with any PNC
